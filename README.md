@@ -48,6 +48,7 @@ mac
     
 
 同じディレクトリにapp.pyを作ります。（レポジトリ内のはほとんどサンプル通り）
+
 flaskを起動させることでURLが出力されるのでそこにOKと出ていればよし。（Warningが出るようですが大丈夫です。）
 
 
@@ -56,11 +57,16 @@ flaskを起動させることでURLが出力されるのでそこにOKと出て�
 次にLINEアカウントとリンクさせます。
 
 LineDeveloperのページで
+
 「Messaging API 設定」にチャネルアクセストークン
+
 「チャネル基本設定」にチャネルシークレット
+
 があるのでそれぞれ発行し、app.pyの
-　　line_bot_api = LineBotApi('YOUR_CHANNEL_ACCESS_TOKEN') //YOUR_CHANNEL_ACCESS_TOKEN = チャネルアクセストークン
-　　handler = WebhookHandler('YOUR_CHANNEL_SECRET') //YOUR_CHANNEL_SECRET = チャネルシークレット
+
+　　 line_bot_api = LineBotApi('YOUR_CHANNEL_ACCESS_TOKEN') //YOUR_CHANNEL_ACCESS_TOKEN = チャネルアクセストークン
+　　 handler = WebhookHandler('YOUR_CHANNEL_SECRET') //YOUR_CHANNEL_SECRET = チャネルシークレット
+
 にそれぞれ入力しましょう。
 
 ローカルでのテスト用のWebページを作るのにngrokを使います。(https://ngrok.com/)
@@ -68,16 +74,23 @@ LineDeveloperのページで
 windowsならngrok.exe、Macならngrokが有ると思うので以下のコマンドを実行して動かします。
 
     ngrok.exe http 5000 //Windows
+
 または
+
     ./ngrok http 5000 // Mac
 
 また、flask runするとngrokを動かしているターミナルで
+
 Forwardingに
-    //https://xxxxxxxxxxx.ngrok.io -> http://localhost:5000 (xxxxxxxxxxxが任意に決まると思います)
+
+     //https://xxxxxxxxxxx.ngrok.io -> http://localhost:5000 (xxxxxxxxxxxが任意に決まると思います)
+    
 が有ると思うので
+
 https://xxxxxxxxxxx.ngrok.io にアクセスするとflaskを起動させた時にでたURLと同じようにOKが出ると思います。
-これで一時的にですが全世界に公開されているので、このURLを
-LineDeveloperのページで「Messaging API 設定」のWebhookURLに設定することでLINEbotにアクセスできる様になります。
+
+これで一時的にですが全世界に公開されているので、このURLをLineDeveloperのページで「Messaging API 設定」のWebhookURLに設定することでLINEbotにアクセスできる様になります。
+
 （※注意　Webhookとして設定するときはURLの最後に/callbackをつけた https://xxxxxxxxxxx.ngrok.io/callback を設定してください）
 
 このあと、LineDeveloperのページで「Messaging API 設定」にあるLINE公式アカウント機能の設定から
@@ -98,4 +111,17 @@ MacOSなら
      brew tap heroku/brew && brew install heroku
 でインストール出来ます。
 
-次にHerokuにpushする前にrequirement.txtを作ります。（herokuサーバ上の環境を整えるため）
+次にHerokuにpushする前にrequirement.txtとProfileを作ります。（herokuサーバ上の環境を整えるため）
+requirements.txtを手作業で作ると大変なのでgunicornを近います。
+
+     $ pip install gunicorn
+     
+でインストールし、
+
+     $ pip install > requrirements.txt
+     
+をするとrequirements.txtが作れます。
+（今までインストールしてきたライブラリが記述されています。）
+
+ProcfileはHeroku上でプログラムを動かすのに必要です。
+
