@@ -110,7 +110,9 @@ AppNameを設定してクリエイトしてください。
 
 HerokuCLIを使ってHeroku上に作ったプログラムをアップしてきます。
 Deployを読むとInstall Heroku CLIを見つけることが出来るのでここからDownloadしてください。
+
 windowsならインストーラーをダウンロードし起動
+
 MacOSなら
 
      brew tap heroku/brew && brew install heroku
