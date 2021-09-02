@@ -64,8 +64,9 @@ LineDeveloperのページで
 
 があるのでそれぞれ発行し、app.pyの
 
-　　 line_bot_api = LineBotApi('YOUR_CHANNEL_ACCESS_TOKEN') //YOUR_CHANNEL_ACCESS_TOKEN = チャネルアクセストークン
-　　 handler = WebhookHandler('YOUR_CHANNEL_SECRET') //YOUR_CHANNEL_SECRET = チャネルシークレット
+    line_bot_api = LineBotApi('YOUR_CHANNEL_ACCESS_TOKEN') //YOUR_CHANNEL_ACCESS_TOKEN = チャネルアクセストークン
+    
+    handler = WebhookHandler('YOUR_CHANNEL_SECRET') //YOUR_CHANNEL_SECRET = チャネルシークレット
 
 にそれぞれ入力しましょう。
 
@@ -73,11 +74,11 @@ LineDeveloperのページで
 好きな場所に保存、解凍した後、flask runするターミナルとは別のターミナルで保存場所に移動。
 windowsならngrok.exe、Macならngrokが有ると思うので以下のコマンドを実行して動かします。
 
-    ngrok.exe http 5000 //Windows
+    $ ngrok.exe http 5000 //Windows
 
 または
 
-    ./ngrok http 5000 // Mac
+    $ ./ngrok http 5000 // Mac
 
 また、flask runするとngrokを動かしているターミナルで
 
@@ -96,11 +97,14 @@ https://xxxxxxxxxxx.ngrok.io にアクセスするとflaskを起動させた時�
 このあと、LineDeveloperのページで「Messaging API 設定」にあるLINE公式アカウント機能の設定から
 Webhookを有効化すると作ったプログラムでLINEbotが動くようになります。
 
+ここで開発を進めましょう。
+
 
 手順２（Herokuにアップロードする）
 =====
+完成したら公開しましょう。
 
-herokuに登録してください。
+まず、herokuに登録してください。
 サインイン後、自分のページで右上に[New]といのが有ります。ここでCreate new appとしてください。
 AppNameを設定してクリエイトしてください。
 
@@ -125,3 +129,18 @@ requirements.txtを手作業で作ると大変なのでgunicornを近います�
 
 ProcfileはHeroku上でプログラムを動かすのに必要です。
 
+後はHerokuのDeployにある通り進めます。
+
+     $ heroku login
+     $ heroku git:clone -a (app名)
+     $ git add .
+     $ git commit -am "make it better"
+     $ git push heroku master
+
+この最後にhttps://（app名）.herokuapp.com/ にデプロイ出来たという出力がされるので、
+
+https://（app名）.herokuapp.com/ にアクセスし、今までと同様OKが出たらOKです。
+
+最後にこのURLに/callbackを加えたhttps://（app名）.herokuapp.com//callback をwebhookに設定して動作確認を終えたら終了です。
+
+お疲れ様でした。
