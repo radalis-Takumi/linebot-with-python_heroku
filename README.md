@@ -112,7 +112,9 @@ HerokuCLIを使ってHeroku上に作ったプログラムをアップしてき�
 Deployを読むとInstall Heroku CLIを見つけることが出来るのでここからDownloadしてください。
 windowsならインストーラーをダウンロードし起動
 MacOSなら
+
      brew tap heroku/brew && brew install heroku
+     
 でインストール出来ます。
 
 次にHerokuにpushする前にrequirement.txtとProfileを作ります。（herokuサーバ上の環境を整えるため）
