@@ -16,12 +16,46 @@ https://developers.line.biz/ja/
 開発環境はVScodeで行いました。
 
 手順
------
+=====
 
 好きなディレクトリに移動してください。
-まず作業する仮想環境を作ります。
+まず作業する仮想環境を作り、アクティブにしてください。アクティブの仕方はmacとwindowsで変わります。
+今回はlineという名前で作りました、適宜変更してください。(line)と始めに出ればOK
+::
+
+    $ python3 -m venv line
+
+windows(コマンドプロンプト)
+--------
+::
+
+    $ line\Scripts\active.bat
+
+windows(PowerShell)
+--------
+::
+
+    $ line\Scripts\Activate.ps1
+
+mac
+--------
+::
+
+    $ line/bin/activate
+    
+
+次にflask,line-bot-sdkをインストール
+::
+
+    $ pip install flask
+    $ pip install line-bot-sdk
+    
+
+同じディレクトリにapp.pyを作ります。（レポジトリ内のはほとんどサンプル通り）
+flaskを起動させることでURLが出力されるのでそこにOKと出ていればよし。（Warningが出るようですが大丈夫です。）
 
 ::
- $ python3 -m venv line
+
+    $ pip install flask
 
 
